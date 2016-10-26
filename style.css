@@ -1,0 +1,44 @@
+/*.pairs{
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+}*/
+
+/*.groups{
+    display: inline-block
+}*/
+
+.pair{
+    /*width: 30%;*/
+    border: solid #060 2px;
+    margin: 4px;
+    border-radius: 20%;
+    text-align: center;
+    /*position: relative;
+    display: block*/
+}
+a:hover{
+    color: #d00
+}
+
+a.badge:hover{
+    background-color: #d00
+}
+
+.btn-awesome{
+    background-color: #a4a;
+    color: white
+}
+
+h1{
+    color: #060;
+    text-align: center
+}
+
+h4{
+    color: #900
+}
+
+/*.row{
+    display: inline-block
+}*/

@@ -1,0 +1,26 @@
+<div ng-if="pc.underFlowShow==1">
+    <h4>Group size doesn't allow for equal distribution. One group contains only {{pc.underFlowAlert2}} name(s)! How shall I
+        proceed?</h4>
+    <form ng-submit="pc.assembleGroups(pc.how)">
+        <p><input type="radio" name="oddball" ng-model="pc.how" value="L"><label>Leave as-is, or adjust group(s) manually.</label></p>
+        <p ng-hide="pc.numOfGrps() < pc.underFlowAlert2"><input type="radio" name="oddball" ng-model="pc.how" value="B"><label>Make some groups bigger.</label></p>
+        <p ng-hide="pc.groupSize - pc.underFlowAlert2 < 2"><input type="radio" name="oddball" ng-model="pc.how" value="S"><label>Make some groups smaller.</label></p>
+        <p>To start again using a different group size, click the "Hide Groupings" button.</p>
+        <!--<button type="submit" ng-click="pc.underFlowShow = 3">Form Groups</button>-->
+        <button class="btn btn-awesome" type="submit">Form Groups</button>
+    </form>
+</div>
+<div ng-if="pc.underFlowShow==2">
+    <h4>Group size allows for equal distribution.</h4>
+    <!--<button ng-click="pc.assembleGroups('L'); pc.underFlowShow=3">Form Groups</button>-->
+    <button class="btn btn-awesome" ng-click="pc.assembleGroups('L')">Form Groups</button>
+</div>
+
+    <div ng-repeat="group in pc.groups" class="">
+        <div class="pair col-xs-2">
+            <div ng-repeat="person in group track by $index" class="">
+                <p class=""> <strong> {{person.name}} </strong></p>
+                <!--<p><strong> {{pair.name2}} </strong></p>-->
+            </div>
+        </div>
+    </div>

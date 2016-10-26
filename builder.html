@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-xs-2">
+            <!--{{8*8}}-->
+            <div>
+                <button class="btn btn-warning" ng-if="bc.killer != 'Confirm?'" ng-click="bc.confirmKill()">{{bc.killer}}</button>
+                <button class="btn btn-danger" ng-if="bc.killer == 'Confirm?'" ng-click="bc.clearStudents('yes')">{{bc.killer}}</button>
+                <button class="btn btn-warning" ng-if="bc.killer == 'Confirm?'" ng-click="bc.clearStudents('no')">NOOO!</button>
+
+                <!--<builder></builder>-->
+                <label for="group-size">How many people in each group?</label><input type="number" min="2" max="10" width="50px"
+                    ng-click="bc.lookey=false" ng-model="bc.groupSize">
+                <button class="btn btn-info" ng-hide="bc.lookey" ng-click="bc.lookey = !bc.lookey; bc.studentArr2 = bc.studentArr.slice()">Show Groupings</button>
+                <button class="btn btn-info" ng-show="bc.lookey" ng-click="bc.lookey = !bc.lookey">Hide Groupings</button>                <br>
+
+                <button class="btn btn-primary" ng-hide="bc.adder" ng-click="bc.adder = !bc.adder">Add Student</button>
+                <button class="btn btn-primary" ng-show="bc.adder" ng-click="bc.adder = !bc.adder">Done Adding Students</button>
+                <form ng-show="bc.adder" ng-submit="bc.addStudent(bc.name)">
+                    <input type="text" placeholder="new name" ng-model="bc.name">
+                    <button class="btn btn-success" type="submit" ng-hide="true">Add Me</button>
+                </form>
+
+                <ul ng-repeat="person in bc.studentArr track by $index">
+                    <li> <input type="checkbox" ng-model="person.present"><a ng-click="bc.confirmRemove(person.name)">{{person.name}}</a>
+                        <a class="badge" ng-if="bc.dropOne" ng-click="bc.dropStudent(person.name)">X</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-xs-10">
+            <div class="row">
+                <!--<pair-up ng-if="pc.viewable"></pair-up>-->
+                <pair-up class="" ng-if="bc.lookey" students="bc.studentArr2" group-size="bc.groupSize"></pair-up>
+            </div>
+        </div>
+    </div>
+</div>

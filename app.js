@@ -23,7 +23,7 @@
         var bc = this;
         bc.studentArr = [];
         bc.studentArr2 = [];
-        bc.killer = "Clear Students";
+        bc.killer = "Clear Scouts";
         bc.adder = false;
         bc.lookey = false;
         bc.name = "";
@@ -31,20 +31,22 @@
         bc.groupSize = 2;
 
         // bc.loadStudents();
-        bc.studentArr = JSON.parse(localStorage.getItem("groupBuilder")) || [];
+        bc.studentArr = JSON.parse(localStorage.getItem("scoutGrouper")) || [];
 
-        bc.addStudent = function (newName) {
-            let person = {
-                name: newName,
+        bc.addStudent = function (newScout) {
+            let scout = {
+                name: newScout.name,
+                troop: newScout.troop,
+                color: newScout.color,
                 present: true
             }
-            bc.name = "";
-            bc.studentArr.unshift(person);
-            localStorage.setItem("groupBuilder", JSON.stringify(bc.studentArr));
+            bc.scout.name = ""
+            bc.studentArr.unshift(scout);
+            localStorage.setItem("scoutGrouper", JSON.stringify(bc.studentArr));
         }
 
         bc.loadStudents = function () {
-            bc.studentArr = JSON.parse(localStorage.getItem("groupBuilder"));
+            bc.studentArr = JSON.parse(localStorage.getItem("scoutGrouper"));
         }
 
         bc.confirmRemove = function (name) {
@@ -59,7 +61,7 @@
                 }
                 bc.studentArr[i].present = true;
             }
-            localStorage.setItem("groupBuilder", JSON.stringify(bc.studentArr));
+            localStorage.setItem("scoutGrouper", JSON.stringify(bc.studentArr));
             bc.dropOne = false;
         }
 
@@ -71,11 +73,11 @@
         bc.clearStudents = function (doIt) {
             if (doIt == "yes") {
                 bc.studentArr = [];
-                localStorage.setItem("groupBuilder", JSON.stringify(bc.studentArr));
+                localStorage.setItem("scoutGrouper", JSON.stringify(bc.studentArr));
             } else {
                 alert("That was close!")
             }
-            bc.killer = "Clear Students";
+            bc.killer = "Clear Scouts";
         }
     }//end of BuilderController
 

@@ -14,15 +14,17 @@
                 <button class="btn btn-info" ng-hide="bc.lookey" ng-click="bc.lookey = !bc.lookey; bc.studentArr2 = bc.studentArr.slice()">Show Groupings</button>
                 <button class="btn btn-info" ng-show="bc.lookey" ng-click="bc.lookey = !bc.lookey">Hide Groupings</button>                <br>
 
-                <button class="btn btn-primary" ng-hide="bc.adder" ng-click="bc.adder = !bc.adder">Add Student</button>
-                <button class="btn btn-primary" ng-show="bc.adder" ng-click="bc.adder = !bc.adder">Done Adding Students</button>
-                <form ng-show="bc.adder" ng-submit="bc.addStudent(bc.name)">
-                    <input type="text" placeholder="new name" ng-model="bc.name">
+                <button class="btn btn-primary" ng-hide="bc.adder" ng-click="bc.adder = !bc.adder">Add Scout</button>
+                <button class="btn btn-primary" ng-show="bc.adder" ng-click="bc.adder = !bc.adder">Done Adding Scouts</button>
+                <form ng-show="bc.adder" ng-submit="bc.addStudent(bc.scout)">
+                    <input type="text" placeholder="new name" ng-model="bc.scout.name">
+                    <input type="text" placeholder="troop number" ng-model="bc.scout.troop">
+                    <input type="color" ng-model="bc.scout.color">
                     <button class="btn btn-success" type="submit" ng-hide="true">Add Me</button>
                 </form>
 
                 <ul ng-repeat="person in bc.studentArr track by $index">
-                    <li> <input type="checkbox" ng-model="person.present"><a ng-click="bc.confirmRemove(person.name)">{{person.name}}</a>
+                    <li> <input type="checkbox" ng-model="person.present"><a ng-click="bc.confirmRemove(person.name)">{{person.name}}<span ng-style="{color: person.color}"> ■</span></a>
                         <a class="badge" ng-if="bc.dropOne" ng-click="bc.dropStudent(person.name)">X</a>
                     </li>
                 </ul>
